@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Number Pattern Generation</title>
+    <style>
+      .pattern {
+        font-family: monospace;
+        white-space: pre;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function generatePattern(luckyNumber) {
+        const maxNum = luckyNumber * 2 - 1;
+        const maxChar = "A".charCodeAt(0) + luckyNumber - 1;
+
+        function generateLine(n) {
+          let line = "";
+          for (let i = 1; i <= n; i += 2) {
+            line += i + " ";
+          }
+          for (
+            let j = "A".charCodeAt(0);
+            j < "A".charCodeAt(0) + (n - 1) / 2;
+            j++
+          ) {
+            line += String.fromCharCode(j) + " ";
+          }
+          return line.trim();
+        }
+
+        let pattern = [];
+        for (let i = 1; i <= maxNum; i += 2) {
+          pattern.push(generateLine(i));
+        }
+        for (let i = maxNum - 2; i >= 1; i -= 2) {
+          pattern.push(generateLine(i));
+        }
+
+        document.write('<div class="pattern">');
+        pattern.forEach((line) => {
+          document.write(line + "<br>");
+        });
+        document.write("</div>");
+      }
+
+      const luckyNumber = parseInt(prompt("Please enter your lucky number:"));
+      if (!isNaN(luckyNumber) && luckyNumber > 0) {
+        generatePattern(luckyNumber);
+      } else {
+        document.write(
+          '<div class="pattern">Invalid input. Please enter a positive number.</div>'
+        );
+      }
+    </script>
+  </body>
+</html>

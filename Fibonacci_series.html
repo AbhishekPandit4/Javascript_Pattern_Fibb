@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fibonacci Sequence</title>
+</head>
+<body>
+    <h1>Fibonacci Sequence Generator</h1>
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" />
+    <button onclick="generateFibonacci()">Generate</button>
+    <h2>Fibonacci Series:</h2>
+    <pre id="output"></pre>
+
+    <script>
+        function generateFibonacci() {
+            let num = parseInt(document.getElementById('number').value);
+            let x = 0;
+            let y = 1;
+            let fun = x + y;
+            let result = x + "\n" + y + "\n";
+
+            while (fun <= num) {
+                result += fun + "\n";
+                x = y;
+                y = fun;
+                fun = x + y;
+            }
+
+            document.getElementById('output').textContent = result;
+        }
+    </script>
+</body>
+</html>
